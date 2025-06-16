@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[95327],{95327:(e,t,s)=>{s.r(t),s.d(t,{default:()=>p});var l=s(35143),a=s(91967),c=s(46053),n=(s(81806),s(76460),s(47249),s(85842));let o=class extends a.default{constructor(e){super(e),this.enabled=!1}};(0,l._)([(0,c.MZ)({type:Boolean,nonNullable:!0})],o.prototype,"enabled",void 0),o=(0,l._)([(0,n.$)("esri.views.interactive.sketch.SketchLabelOptions")],o);const p=o}}]);
+//# sourceMappingURL=95327.1c160522.chunk.js.map

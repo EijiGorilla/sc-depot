@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[96177],{96177:(e,c,o)=>{o.r(c),o.d(c,{symbolUrlFromStyleItem:()=>s});var r=o(61693);function s(e,c){var o;const s="cimRef"===c?["cim"]:["web"];return null===(o=(0,r.o5)(e,s))||void 0===o?void 0:o.url}}}]);
+//# sourceMappingURL=96177.dd20621a.chunk.js.map

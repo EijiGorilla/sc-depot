@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[71872],{71872:(e,s,t)=>{t.r(s),t.d(s,{toJSON:()=>u});var c=t(44081);function u(e){return(0,c.U2)(e)}}}]);
+//# sourceMappingURL=71872.549b083d.chunk.js.map
