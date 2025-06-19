@@ -1,5 +1,4 @@
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import SceneLayer from "@arcgis/core/layers/SceneLayer";
 import LabelClass from "@arcgis/core/layers/support/LabelClass";
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer";
 import {
@@ -11,7 +10,6 @@ import SolidEdges3D from "@arcgis/core/symbols/edges/SolidEdges3D";
 import { labelSymbol3DLine } from "./Label";
 import BuildingSceneLayer from "@arcgis/core/layers/BuildingSceneLayer";
 import UniqueValueRenderer from "@arcgis/core/renderers/UniqueValueRenderer";
-import { Label } from "@amcharts/amcharts5";
 
 /* Standalone table for Dates */
 export const dateTable = new FeatureLayer({
@@ -127,6 +125,70 @@ export const buildingLayer = new BuildingSceneLayer({
   title: "Depot Buildings",
 });
 
+const colorStatus = [
+  [225, 225, 225, 0.1], // To be Constructed (white)
+  [211, 211, 211, 0.5], // Under Construction
+  [255, 0, 0, 0.8], // Delayed
+  [0, 112, 255, 0.8], // Completed
+];
+
+const renderer = new UniqueValueRenderer({
+  field: "Status",
+  uniqueValueInfos: [
+    {
+      value: 1,
+      label: "To be Constructed",
+      symbol: new MeshSymbol3D({
+        symbolLayers: [
+          new FillSymbol3DLayer({
+            material: {
+              color: colorStatus[0],
+              colorMixMode: "replace",
+            },
+            edges: new SolidEdges3D({
+              color: [225, 225, 225, 0.3],
+            }),
+          }),
+        ],
+      }),
+    },
+    {
+      value: 2,
+      label: "Under Construction",
+      symbol: new MeshSymbol3D({
+        symbolLayers: [
+          new FillSymbol3DLayer({
+            material: {
+              color: colorStatus[1],
+              colorMixMode: "replace",
+            },
+            edges: new SolidEdges3D({
+              color: [225, 225, 225, 0.3],
+            }),
+          }),
+        ],
+      }),
+    },
+    {
+      value: 4,
+      label: "Completed",
+      symbol: new MeshSymbol3D({
+        symbolLayers: [
+          new FillSymbol3DLayer({
+            material: {
+              color: colorStatus[3],
+              colorMixMode: "replace",
+            },
+            edges: new SolidEdges3D({
+              color: [225, 225, 225, 0.3],
+            }),
+          }),
+        ],
+      }),
+    },
+  ],
+});
+
 // Discipline: Architectural
 export let columnsLayer: null | any;
 export let floorsLayer: null | any;
@@ -200,61 +262,88 @@ buildingLayer.when(() => {
 
       case "GenericModel":
         genericModelLayer = layer;
+        genericModelLayer.popupTemplate = popuTemplate;
+        genericModelLayer.title = "Generic Model";
+        genericModelLayer.renderer = renderer;
         break;
 
       case "Furniture":
         furnitureLayer = layer;
+        furnitureLayer.popupTemplate = popuTemplate;
+        furnitureLayer.title = "Furniture";
+        furnitureLayer.renderer = renderer;
         break;
 
       case "Doors":
         doorsLayer = layer;
+        doorsLayer.popupTemplate = popuTemplate;
+        doorsLayer.title = "Doors";
+        doorsLayer.renderer = renderer;
         break;
 
       case "Columns":
         columnsLayer = layer;
         columnsLayer.popupTemplate = popuTemplate;
+        columnsLayer.title = "Columns";
+        columnsLayer.renderer = renderer;
         //excludedLayers.push(layer);
         break;
 
       case "Floors":
         floorsLayer = layer;
         floorsLayer.popupTemplate = popuTemplate;
+        floorsLayer.title = "Floors";
+        floorsLayer.renderer = renderer;
         //excludedLayers
         break;
 
       case "Stairs":
         stairsLayer = layer;
         stairsLayer.popupTemplate = popuTemplate;
+        stairsLayer.title = "Stairs";
+        stairsLayer.renderer = renderer;
         break;
 
       case "Roofs":
         roofsLayer = layer;
         roofsLayer.popupTemplate = popuTemplate;
+        roofsLayer.title = "Roofs";
+        roofsLayer.renderer = renderer;
         break;
 
       case "Walls":
         wallsLayer = layer;
         wallsLayer.popupTemplate = popuTemplate;
+        wallsLayer.title = "Walls";
+        wallsLayer.renderer = renderer;
         break;
 
       case "Windows":
         windowsLayer = layer;
         windowsLayer.popupTemplate = popuTemplate;
+        windowsLayer.title = "Windows";
+        windowsLayer.renderer = renderer;
         break;
 
       case "StructuralFraming":
         stFramingLayer = layer;
         stFramingLayer.popupTemplate = popuTemplate;
+        stFramingLayer.title = "Structural Framing";
+        stFramingLayer.renderer = renderer;
         break;
 
       case "StructuralColumns":
         stColumnLayer = layer;
         stColumnLayer.popupTemplate = popuTemplate;
+        stColumnLayer.title = "Structural Columns";
+        stColumnLayer.renderer = renderer;
         break;
 
       case "StructuralFoundation":
         stFoundationLayer = layer;
         stFoundationLayer.popupTemplate = popuTemplate;
+        stFoundationLayer.title = "Structural Foundation";
+        stFoundationLayer.renderer = renderer;
         break;
 
       default:
@@ -274,46 +363,6 @@ export const buildingLayer_cw = new BuildingSceneLayer({
   // Do not add outFields; otherwise, rendering get extremely slow
   title: "Depot Civil Works",
 });
-
-const colorStatus = [
-  [225, 225, 225, 0.5], // To be Constructed (white), default = 0.1
-  [130, 130, 130, 0.5], // Under Construction
-  [255, 0, 0, 0.8], // Delayed
-  [0, 112, 255, 0.8], // Completed
-];
-
-const renderer = new UniqueValueRenderer({
-  field: "Status",
-});
-
-for (var i = 0; i < colorStatus.length; i++) {
-  renderer.addUniqueValueInfo({
-    value: i + 1,
-    label:
-      i === 0
-        ? "To be Constructed"
-        : i === 1
-        ? "Under Construction"
-        : i === 2
-        ? "Delayed"
-        : i === 3
-        ? "Completed"
-        : "",
-    symbol: new MeshSymbol3D({
-      symbolLayers: [
-        new FillSymbol3DLayer({
-          material: {
-            color: colorStatus[i],
-            colorMixMode: "replace",
-          },
-          edges: new SolidEdges3D({
-            color: [225, 225, 225, 0.8], // default = 0.3
-          }),
-        }),
-      ],
-    }),
-  });
-}
 
 // Discipline: Architectural
 export let floorsLayer_cw: null | any;
@@ -366,6 +415,7 @@ buildingLayer_cw.when(() => {
       case "GenericModel":
         genericModelLayer_cw = layer;
         genericModelLayer_cw.title = "GeneralModel";
+        genericModelLayer_cw.renderer = renderer;
         break;
 
       case "Floors":
