@@ -330,7 +330,7 @@ const CivilWorkChart = () => {
       <div
         id={chartID_cw}
         style={{
-          // width: '22vw',
+          width: "24vw",
           height: "65vh",
           backgroundColor: "rgb(0,0,0,0)",
           color: "white",

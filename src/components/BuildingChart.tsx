@@ -366,7 +366,7 @@ const BuildingChart = () => {
       <div
         id={chartID}
         style={{
-          // width: '22vw',
+          width: "24vw",
           height: "64vh",
           backgroundColor: "rgb(0,0,0,0)",
           color: "white",

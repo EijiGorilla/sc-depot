@@ -246,7 +246,6 @@ export let exteriorShellLayer: null | any;
 
 buildingLayer.when(() => {
   buildingLayer.allSublayers.forEach((layer: any) => {
-    console.log(layer.modelName);
     switch (layer.modelName) {
       case "FullModel":
         layer.visible = true;
