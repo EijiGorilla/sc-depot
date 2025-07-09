@@ -253,54 +253,65 @@ const BuildingChart = () => {
         });
       });
 
-      series.columns.template.events.on("click", (ev) => {
-        const selected: any = ev.target.dataItem?.dataContext;
-        const categorySelect: string = selected.category;
-        const find = buildingType.find(
-          (emp: any) => emp.category === categorySelect
-        );
-        const typeSelect = find?.value;
-        const status_selected: number | null =
-          fieldName === "comp" ? 4 : fieldName === "incomp" ? 1 : 3;
-        // fieldName === "comp"
-        //   ? fieldName === "incomp"
-        //     ? 1
-        //     : 4
-        //   : fieldName === "delay"
-        //   ? 3
-        //   : 1;
-        const expression =
-          "Type = " + typeSelect + " AND " + "Status = " + status_selected;
+      // series.columns.template.events.on("click", (ev) => {
+      //   const selected: any = ev.target.dataItem?.dataContext;
+      //   const categorySelect: string = selected.category;
+      //   const find = buildingType.find(
+      //     (emp: any) => emp.category === categorySelect
+      //   );
+      //   const typeSelect = find?.value;
+      //   const status_selected: number | null =
+      //     fieldName === "comp" ? 4 : fieldName === "incomp" ? 1 : 3;
+      //   // fieldName === "comp"
+      //   //   ? fieldName === "incomp"
+      //   //     ? 1
+      //   //     : 4
+      //   //   : fieldName === "delay"
+      //   //   ? 3
+      //   //   : 1;
+      //   const buildingExpressin = "Name = '" + buildings + "'";
+      //   const typeExpression = "Type = " + typeSelect;
+      //   const statusExpression = "Status = " + status_selected;
 
-        if (!categorySelect) {
-          stFoundationLayer.visible = true;
-          stFramingLayer.visible = true;
-          stColumnLayer.visible = true;
-          columnsLayer.visible = true;
-          roofsLayer.visible = true;
-          floorsLayer.visible = true;
-          wallsLayer.visible = true;
-          furnitureLayer.visible = true;
-          doorsLayer.visible = true;
-          stairsLayer.visible = true;
-          windowsLayer.visible = true;
-        } else {
-          stColumnLayer.definitionExpression = expression;
-          stFoundationLayer.definitionExpression = expression;
-          stFramingLayer.definitionExpression = expression;
-          furnitureLayer.definitionExpression = expression;
-          doorsLayer.definitionExpression = expression;
-          stairsLayer.definitionExpression = expression;
-          roofsLayer.definitionExpression = expression;
-          floorsLayer.definitionExpression = expression;
-          wallsLayer.definitionExpression = expression;
-          windowsLayer.definitionExpression = expression;
-        }
+      //   const expression = !buildings
+      //     ? typeExpression + " AND " + statusExpression
+      //     : buildingExpressin +
+      //       " AND " +
+      //       typeExpression +
+      //       " AND " +
+      //       statusExpression;
 
-        arcgisScene?.view.on("click", () => {
-          layerVisibleTrue();
-        });
-      });
+      //   console.log(expression);
+
+      //   if (!categorySelect) {
+      //     stFoundationLayer.visible = true;
+      //     stFramingLayer.visible = true;
+      //     stColumnLayer.visible = true;
+      //     columnsLayer.visible = true;
+      //     roofsLayer.visible = true;
+      //     floorsLayer.visible = true;
+      //     wallsLayer.visible = true;
+      //     furnitureLayer.visible = true;
+      //     doorsLayer.visible = true;
+      //     stairsLayer.visible = true;
+      //     windowsLayer.visible = true;
+      //   } else {
+      //     stColumnLayer.definitionExpression = expression;
+      //     stFoundationLayer.definitionExpression = expression;
+      //     stFramingLayer.definitionExpression = expression;
+      //     furnitureLayer.definitionExpression = expression;
+      //     doorsLayer.definitionExpression = expression;
+      //     stairsLayer.definitionExpression = expression;
+      //     roofsLayer.definitionExpression = expression;
+      //     floorsLayer.definitionExpression = expression;
+      //     wallsLayer.definitionExpression = expression;
+      //     windowsLayer.definitionExpression = expression;
+      //   }
+
+      //   arcgisScene?.view.on("click", () => {
+      //     layerVisibleTrue();
+      //   });
+      // });
       legend.data.push(series);
     }
     makeSeries("Complete", "comp");
