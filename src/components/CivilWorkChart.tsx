@@ -304,7 +304,7 @@ const CivilWorkChart = () => {
             marginLeft: "30px",
           }}
         >
-          {progress[1]} %
+          {progress} %
         </div>
 
         <img

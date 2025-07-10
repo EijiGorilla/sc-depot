@@ -290,7 +290,6 @@ export async function generateChartData_cw() {
     walls[1] +
     plumbingFixtures[1];
   const progress = ((comp / total) * 100).toFixed(1);
-
   return [data_cw, progress, total];
 }
 
