@@ -354,7 +354,7 @@ buildingLayer.when(() => {
 // Building layers for Depot civil works
 export const buildingLayer_cw = new BuildingSceneLayer({
   portalItem: {
-    id: "02ae45b1cec743599866829abc1cab05",
+    id: "09a326d846c84a50a332c2b8f64d2c31", //"02ae45b1cec743599866829abc1cab05",
     portal: {
       url: "https://gis.railway-sector.com/portal",
     },
@@ -371,10 +371,12 @@ export let plumbinFixturesLayer_cw: null | any;
 
 // Discipline_cw: Structural
 export let stFoundationLayer_cw: null | any;
+export let stFramingLayer_cw: null | any;
+export let stColumnsLayer_cw: null | any;
 export let genericModelLayer_cw: null | any;
 
 export const popupTemplate_cw = {
-  title: "{Types}",
+  title: "{BaseCategory}",
   content: [
     {
       type: "fields",
@@ -402,7 +404,8 @@ buildingLayer_cw.when(() => {
         break;
 
       case "Architectural":
-        layer.visible = true;
+        layer.visible = false;
+        layer.title = "Architecture (reference only)";
         break;
 
       case "Overview":
@@ -417,40 +420,54 @@ buildingLayer_cw.when(() => {
         genericModelLayer_cw.renderer = renderer;
         break;
 
-      case "Floors":
-        floorsLayer_cw = layer;
-        floorsLayer_cw.popupTemplate = popupTemplate_cw;
-        floorsLayer_cw.renderer = renderer;
-        floorsLayer_cw.title = "Floors";
-        //excludedLayers
-        break;
+      // case "Floors":
+      //   floorsLayer_cw = layer;
+      //   floorsLayer_cw.popupTemplate = popupTemplate_cw;
+      //   floorsLayer_cw.renderer = renderer;
+      //   floorsLayer_cw.title = "Floors";
+      //   //excludedLayers
+      //   break;
 
-      case "PlumbingFixtures":
-        plumbinFixturesLayer_cw = layer;
-        plumbinFixturesLayer_cw.popupTemplate = popupTemplate_cw;
-        plumbinFixturesLayer_cw.renderer = renderer;
-        plumbinFixturesLayer_cw.title = "PlumbingFixtures";
-        break;
+      // case "PlumbingFixtures":
+      //   plumbinFixturesLayer_cw = layer;
+      //   plumbinFixturesLayer_cw.popupTemplate = popupTemplate_cw;
+      //   plumbinFixturesLayer_cw.renderer = renderer;
+      //   plumbinFixturesLayer_cw.title = "PlumbingFixtures";
+      //   break;
 
-      case "StairsRailing":
-        stairsRailingLayer_cw = layer;
-        stairsRailingLayer_cw.popupTemplate = popupTemplate_cw;
-        stairsRailingLayer_cw.renderer = renderer;
-        stairsRailingLayer_cw.title = "StairsRailing";
-        break;
+      // case "StairsRailing":
+      //   stairsRailingLayer_cw = layer;
+      //   stairsRailingLayer_cw.popupTemplate = popupTemplate_cw;
+      //   stairsRailingLayer_cw.renderer = renderer;
+      //   stairsRailingLayer_cw.title = "StairsRailing";
+      //   break;
 
-      case "Walls":
-        wallsLayer_cw = layer;
-        wallsLayer_cw.popupTemplate = popupTemplate_cw;
-        wallsLayer_cw.renderer = renderer;
-        wallsLayer_cw.title = "Walls";
-        break;
+      // case "Walls":
+      //   wallsLayer_cw = layer;
+      //   wallsLayer_cw.popupTemplate = popupTemplate_cw;
+      //   wallsLayer_cw.renderer = renderer;
+      //   wallsLayer_cw.title = "Walls";
+      //   break;
 
       case "StructuralFoundation":
         stFoundationLayer_cw = layer;
         stFoundationLayer_cw.popupTemplate = popupTemplate_cw;
         stFoundationLayer_cw.renderer = renderer;
         stFoundationLayer_cw.title = "StructuralFoundation";
+        break;
+
+      case "StructuralColumns":
+        stColumnsLayer_cw = layer;
+        stColumnsLayer_cw.popupTemplate = popupTemplate_cw;
+        stColumnsLayer_cw.renderer = renderer;
+        stColumnsLayer_cw.title = "StructuralColumns";
+        break;
+
+      case "StructuralFraming":
+        stFramingLayer_cw = layer;
+        stFramingLayer_cw.popupTemplate = popupTemplate_cw;
+        stFramingLayer_cw.renderer = renderer;
+        stFramingLayer_cw.title = "StructuralFraming (Reference only?)";
         break;
 
       default:

@@ -39,10 +39,29 @@ function MainChart() {
     });
   });
 
+  useEffect(() => {
+    console.log(chartTabName);
+    if (chartTabName === "depotBuilding") {
+      buildingLayer.visible = true;
+      buildingLayer_cw.visible = false;
+    } else if (chartTabName === "civilWorks") {
+      buildingLayer.visible = false;
+      buildingLayer_cw.visible = true;
+    }
+  }, [chartTabName]);
+
   return (
     <>
       <CalciteTabs
-        style={{ width: "35%" }}
+        style={{
+          width: "35%",
+          borderStyle: "solid",
+          borderRightWidth: 5,
+          borderLeftWidth: 5,
+          borderBottomWidth: 5,
+          // borderTopWidth: 5,
+          borderColor: "#555555",
+        }}
         scale="l"
         slot="panel-end"
         layout="center"

@@ -19,6 +19,8 @@ import {
   stairsRailingLayer_cw,
   stFoundationLayer_cw,
   plumbinFixturesLayer_cw,
+  stColumnsLayer_cw,
+  stFramingLayer_cw,
 } from "./layers";
 import StatisticDefinition from "@arcgis/core/rest/support/StatisticDefinition";
 import Query from "@arcgis/core/rest/support/Query";
@@ -168,6 +170,22 @@ export async function buildingSpotZoom(buildingname: any, view: any) {
   });
 }
 
+// SC Depot Civil Works
+export const buildingType_cw = [
+  {
+    category: "St.Foundation",
+    value: 1,
+  },
+  {
+    category: "St.Column",
+    value: 2,
+  },
+  {
+    category: "St.Framing",
+    value: 3,
+  },
+];
+
 export async function generateChartData_cw() {
   var total_incomp = new StatisticDefinition({
     onStatisticField: "CASE WHEN Status = 1 THEN 1 ELSE 0 END",
@@ -200,7 +218,7 @@ export async function generateChartData_cw() {
       return [total_incomp, total_comp, total_ongoing];
     });
 
-  const floorsCompile = floorsLayer_cw
+  const stColumnsCompile = stColumnsLayer_cw
     .queryFeatures(query)
     .then((response: any) => {
       var stats = response.features[0].attributes;
@@ -210,7 +228,7 @@ export async function generateChartData_cw() {
       return [total_incomp, total_comp, total_ongoing];
     });
 
-  const plumbingFixturesCompile = plumbinFixturesLayer_cw
+  const stFramingCompile = stFramingLayer_cw
     .queryFeatures(query)
     .then((response: any) => {
       var stats = response.features[0].attributes;
@@ -220,75 +238,115 @@ export async function generateChartData_cw() {
       return [total_incomp, total_comp, total_ongoing];
     });
 
-  const stairsRailingsCompile = stairsRailingLayer_cw
-    .queryFeatures(query)
-    .then((response: any) => {
-      var stats = response.features[0].attributes;
-      const total_incomp = stats.total_incomp;
-      const total_comp = stats.total_comp;
-      const total_ongoing = stats.total_ongoing;
-      return [total_incomp, total_comp, total_ongoing];
-    });
+  // const floorsCompile = floorsLayer_cw
+  //   .queryFeatures(query)
+  //   .then((response: any) => {
+  //     var stats = response.features[0].attributes;
+  //     const total_incomp = stats.total_incomp;
+  //     const total_comp = stats.total_comp;
+  //     const total_ongoing = stats.total_ongoing;
+  //     return [total_incomp, total_comp, total_ongoing];
+  //   });
 
-  const wallsCompile = wallsLayer.queryFeatures(query).then((response: any) => {
-    var stats = response.features[0].attributes;
-    const total_incomp = stats.total_incomp;
-    const total_comp = stats.total_comp;
-    const total_ongoing = stats.total_ongoing;
-    return [total_incomp, total_comp, total_ongoing];
-  });
+  // const plumbingFixturesCompile = plumbinFixturesLayer_cw
+  //   .queryFeatures(query)
+  //   .then((response: any) => {
+  //     var stats = response.features[0].attributes;
+  //     const total_incomp = stats.total_incomp;
+  //     const total_comp = stats.total_comp;
+  //     const total_ongoing = stats.total_ongoing;
+  //     return [total_incomp, total_comp, total_ongoing];
+  //   });
+
+  // const stairsRailingsCompile = stairsRailingLayer_cw
+  //   .queryFeatures(query)
+  //   .then((response: any) => {
+  //     var stats = response.features[0].attributes;
+  //     const total_incomp = stats.total_incomp;
+  //     const total_comp = stats.total_comp;
+  //     const total_ongoing = stats.total_ongoing;
+  //     return [total_incomp, total_comp, total_ongoing];
+  //   });
+
+  // const wallsCompile = wallsLayer.queryFeatures(query).then((response: any) => {
+  //   var stats = response.features[0].attributes;
+  //   const total_incomp = stats.total_incomp;
+  //   const total_comp = stats.total_comp;
+  //   const total_ongoing = stats.total_ongoing;
+  //   return [total_incomp, total_comp, total_ongoing];
+  // });
 
   const stfoundation = await stFoundationCompile;
-  const floors = await floorsCompile;
-  const plumbingFixtures = await plumbingFixturesCompile;
-  const stairsRailing = await stairsRailingsCompile;
-  const walls = await wallsCompile;
+  const stcolumns = await stColumnsCompile;
+  const stframing = await stFramingCompile;
+  // const floors = await floorsCompile;
+  // const plumbingFixtures = await plumbingFixturesCompile;
+  // const stairsRailing = await stairsRailingsCompile;
+  // const walls = await wallsCompile;
 
   const data_cw = [
     {
-      category: buildingType[0].category,
+      category: buildingType_cw[0].category,
       comp: stfoundation[1],
       incomp: stfoundation[0],
       ongoing: stfoundation[2],
     },
     {
-      category: buildingType[4].category,
-      comp: floors[1],
-      incomp: floors[0],
-      ongoing: floors[2],
+      category: buildingType_cw[1].category,
+      comp: stcolumns[1],
+      incomp: stcolumns[0],
+      ongoing: stcolumns[2],
     },
     {
-      category: buildingType[5].category,
-      comp: walls[1],
-      incomp: walls[0],
-      ongoing: walls[2],
+      category: buildingType_cw[2].category,
+      comp: stframing[1],
+      incomp: stframing[0],
+      ongoing: stframing[2],
     },
-    {
-      category: buildingType[7].category,
-      comp: stairsRailing[1] + plumbingFixtures[1],
-      incomp: stairsRailing[0] + plumbingFixtures[0],
-      ongoing: stairsRailing[2] + plumbingFixtures[2],
-    },
+    // {
+    //   category: buildingType[4].category,
+    //   comp: floors[1],
+    //   incomp: floors[0],
+    //   ongoing: floors[2],
+    // },
+    // {
+    //   category: buildingType[5].category,
+    //   comp: walls[1],
+    //   incomp: walls[0],
+    //   ongoing: walls[2],
+    // },
+    // {
+    //   category: buildingType[7].category,
+    //   comp: stairsRailing[1] + plumbingFixtures[1],
+    //   incomp: stairsRailing[0] + plumbingFixtures[0],
+    //   ongoing: stairsRailing[2] + plumbingFixtures[2],
+    // },
   ];
 
   const total =
     stfoundation[0] +
     stfoundation[1] +
-    floors[0] +
-    floors[1] +
-    stairsRailing[0] +
-    stairsRailing[1] +
-    walls[0] +
-    walls[1] +
-    plumbingFixtures[0] +
-    plumbingFixtures[1];
+    stfoundation[2] +
+    stcolumns[0] +
+    stcolumns[1] +
+    stcolumns[2] +
+    stframing[0] +
+    stframing[1] +
+    stframing[2];
+  // floors[0] +
+  // floors[1] +
+  // stairsRailing[0] +
+  // stairsRailing[1] +
+  // walls[0] +
+  // walls[1] +
+  // plumbingFixtures[0] +
+  // plumbingFixtures[1];
 
-  const comp =
-    stfoundation[1] +
-    floors[1] +
-    stairsRailing[1] +
-    walls[1] +
-    plumbingFixtures[1];
+  const comp = stfoundation[1] + stcolumns[1] + stframing[1];
+  // floors[1] +
+  // stairsRailing[1] +
+  // walls[1] +
+  // plumbingFixtures[1];
   const progress = ((comp / total) * 100).toFixed(1);
   return [data_cw, progress, total];
 }
@@ -821,4 +879,7 @@ export async function defineActions(event: any) {
       open: true,
     };
   }
+  item.title === "Depot Civil Works"
+    ? (item.visible = false)
+    : (item.visible = true);
 }

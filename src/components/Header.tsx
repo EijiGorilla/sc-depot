@@ -17,11 +17,14 @@ function Header() {
         id="header-title"
         style={{
           display: "flex",
-          width: "100%",
           height: "70px",
           padding: "0 1rem",
           borderStyle: "solid",
-          borderWidth: 1,
+          borderRightWidth: 5,
+          borderLeftWidth: 5,
+          borderBottomWidth: 5,
+          borderTopWidth: 5,
+          borderColor: "#555555",
         }}
       >
         <img
@@ -43,7 +46,7 @@ function Header() {
             marginBottom: "auto",
             marginTop: "auto",
             marginLeft: "auto",
-            marginRight: "40px",
+            marginRight: "10px",
             display: "flex",
           }}
         >
