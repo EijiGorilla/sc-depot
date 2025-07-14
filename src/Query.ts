@@ -879,7 +879,9 @@ export async function defineActions(event: any) {
       open: true,
     };
   }
-  item.title === "Depot Civil Works"
+  item.title === "Depot Civil Works" ||
+  item.title === "Architectural (reference only)" ||
+  item.title === "ExteriorShell"
     ? (item.visible = false)
     : (item.visible = true);
 }

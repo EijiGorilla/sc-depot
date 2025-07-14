@@ -364,6 +364,7 @@ export const buildingLayer_cw = new BuildingSceneLayer({
 });
 
 // Discipline: Architectural
+export let architecturalLayer_cw: null | any;
 export let floorsLayer_cw: null | any;
 export let wallsLayer_cw: null | any;
 export let stairsRailingLayer_cw: null | any;
@@ -404,14 +405,16 @@ buildingLayer_cw.when(() => {
         break;
 
       case "Architectural":
-        layer.visible = false;
-        layer.title = "Architecture (reference only)";
+        architecturalLayer_cw = layer;
+        architecturalLayer_cw.visible = false;
+        architecturalLayer_cw.title = "Architectural (reference only)";
         break;
 
       case "Overview":
         exteriorShellLayer_cw = layer;
         exteriorShellLayer_cw.title = "ExteriorShell";
         exteriorShellLayer_cw.visible = false;
+        layer.visible = false;
         break;
 
       case "GenericModel":
