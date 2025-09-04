@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[50356],{50356:(e,c,s)=>{s.d(c,{createRoot:()=>t.c});s(11265),s(73318);var t=s(63397);s(38042)}}]);

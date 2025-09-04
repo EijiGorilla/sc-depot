@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[60176],{60176:(o,r,s)=>{s.r(r),s.d(r,{ControlPointsTransformTool:()=>e.h,DrawGraphicTool2D:()=>a.F,MediaTransformToolsWrapper:()=>l.b,TransformTool:()=>p.B});var a=s(42376),e=s(6363),p=s(44342),l=s(62209)}}]);

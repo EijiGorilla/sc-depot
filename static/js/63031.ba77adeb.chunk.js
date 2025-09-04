@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[63031],{63031:(e,t,c)=>{c.r(t),c.d(t,{getDefaultUnitForView:()=>u});var s=c(19747);function u(e){return(0,s.c)(e)}}}]);
-//# sourceMappingURL=63031.ba77adeb.chunk.js.map

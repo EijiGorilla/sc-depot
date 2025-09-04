@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[71083],{71083:(l,e,n)=>{n.r(e),n.d(e,{default:()=>p});const p={point:l=>{var e,n;return"point"===l.type?l:("polygon"===l.type||"polyline"===l.type)&&null!==(e=null===(n=l.extent)||void 0===n?void 0:n.center)&&void 0!==e?e:null},polygon:l=>"polygon"===l.type?l:null,polyline:l=>"polyline"===l.type?l:null}}}]);
-//# sourceMappingURL=71083.20561746.chunk.js.map

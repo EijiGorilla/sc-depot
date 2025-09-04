@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[36850],{36850:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});var d=t(55171),a=t(6128);class c extends a.x{}c.prototype.declaredClass="esri.identity.IdentityManager";const n=new c;(0,d.setId)(n)}}]);
-//# sourceMappingURL=36850.0865b5ad.chunk.js.map

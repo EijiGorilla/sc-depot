@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksc_depot=self.webpackChunksc_depot||[]).push([[12831],{12831:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});var r=t(35143),p=t(42553),o=t(46053),c=(t(81806),t(76460),t(47249),t(85842));let l=class extends p.A{constructor(e){super(e),this.properties=null}};(0,r._)([(0,o.MZ)({json:{write:!0}})],l.prototype,"properties",void 0),l=(0,r._)([(0,c.$)("esri.rest.knowledgeGraph.GraphObject")],l);const n=l}}]);
-//# sourceMappingURL=12831.3bfc520a.chunk.js.map
