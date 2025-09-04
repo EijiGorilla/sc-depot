@@ -352,6 +352,63 @@ buildingLayer.when(() => {
 });
 
 // Building layers for Depot civil works
+const renderer_cw = new UniqueValueRenderer({
+  field: "Status",
+  uniqueValueInfos: [
+    {
+      value: 1,
+      label: "To be Constructed",
+      symbol: new MeshSymbol3D({
+        symbolLayers: [
+          new FillSymbol3DLayer({
+            material: {
+              color: colorStatus[0],
+              colorMixMode: "replace",
+            },
+            edges: new SolidEdges3D({
+              color: [225, 225, 225, 0.3],
+            }),
+          }),
+        ],
+      }),
+    },
+    {
+      value: 2,
+      label: "Under Construction",
+      symbol: new MeshSymbol3D({
+        symbolLayers: [
+          new FillSymbol3DLayer({
+            material: {
+              color: colorStatus[1],
+              colorMixMode: "replace",
+            },
+            edges: new SolidEdges3D({
+              color: [225, 225, 225, 0.3],
+            }),
+          }),
+        ],
+      }),
+    },
+    {
+      value: 4,
+      label: "Completed",
+      symbol: new MeshSymbol3D({
+        symbolLayers: [
+          new FillSymbol3DLayer({
+            material: {
+              color: colorStatus[3],
+              colorMixMode: "replace",
+            },
+            edges: new SolidEdges3D({
+              color: [225, 225, 225, 0.3],
+            }),
+          }),
+        ],
+      }),
+    },
+  ],
+});
+
 export const buildingLayer_cw = new BuildingSceneLayer({
   portalItem: {
     id: "09a326d846c84a50a332c2b8f64d2c31", //"02ae45b1cec743599866829abc1cab05",
@@ -377,7 +434,7 @@ export let stColumnsLayer_cw: null | any;
 export let genericModelLayer_cw: null | any;
 
 export const popupTemplate_cw = {
-  title: "{BaseCategory}",
+  title: "{Status}",
   content: [
     {
       type: "fields",
@@ -455,21 +512,21 @@ buildingLayer_cw.when(() => {
       case "StructuralFoundation":
         stFoundationLayer_cw = layer;
         stFoundationLayer_cw.popupTemplate = popupTemplate_cw;
-        stFoundationLayer_cw.renderer = renderer;
+        stFoundationLayer_cw.renderer = renderer_cw;
         stFoundationLayer_cw.title = "StructuralFoundation";
         break;
 
       case "StructuralColumns":
         stColumnsLayer_cw = layer;
         stColumnsLayer_cw.popupTemplate = popupTemplate_cw;
-        stColumnsLayer_cw.renderer = renderer;
+        stColumnsLayer_cw.renderer = renderer_cw;
         stColumnsLayer_cw.title = "StructuralColumns";
         break;
 
       case "StructuralFraming":
         stFramingLayer_cw = layer;
         stFramingLayer_cw.popupTemplate = popupTemplate_cw;
-        stFramingLayer_cw.renderer = renderer;
+        stFramingLayer_cw.renderer = renderer_cw;
         stFramingLayer_cw.title = "StructuralFraming (Reference only?)";
         break;
 
